@@ -1,9 +1,11 @@
 let sessionStorageState = JSON.parse(sessionStorage.getItem("sessionStorageState")) || false;
 let localStorageState = JSON.parse(localStorage.getItem("localStorageState")) || false;
+let currentPage = localStorage.getItem("current_page") || "current-page";
 
 document.addEventListener("DOMContentLoaded", () => 
 {
     const html = document.documentElement;
+    html.setAttribute("current-page", currentPage);
 
     let sessionLabel = document.querySelector(".session-storage-title");
     sessionLabel.innerHTML = (sessionStorageState ? "Sess: ON" : "Sess: OFF");
@@ -13,13 +15,17 @@ document.addEventListener("DOMContentLoaded", () =>
 
     document.querySelector(".to-raise-ticket").addEventListener("click", () => 
     {
-        html.setAttribute("current-page", "raise-ticket");
+        currentPage = "raise-ticket";
+        localStorage.setItem("current_page", "raise-ticket");
+        html.setAttribute("current-page", currentPage);
     });
 
     document.querySelector(".to-ticket-list").addEventListener("click", () => 
     {
+        currentPage = "ticket-list";
+        localStorage.setItem("current_page", "ticket-list");
         listTickets();
-        html.setAttribute("current-page", "ticket-list");
+        html.setAttribute("current-page", currentPage);
     });
 
 
