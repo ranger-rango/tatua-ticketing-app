@@ -203,6 +203,9 @@ tbody td {
     width: 1.3rem;
 }
 
+.table-actions svg:hover {
+    cursor: pointer;
+}
 
 .slsc {
     display: flex;
