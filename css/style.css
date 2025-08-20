@@ -220,12 +220,18 @@ tbody td {
 .sls {
     width: 4rem;
     display: flex;
-}s
+}
 
 .session-storage {
     position: fixed;
     bottom: 1rem;
     right: 2rem;
+}
+
+.local-storage {
+    position: fixed;
+    bottom: 1rem;
+    right: 10.5rem;
 }
 
 .on {
@@ -236,7 +242,7 @@ tbody td {
     margin: 0;
 }
 
-.off {
+.off, .clr {
     color: white;
     background-color: var(--btn);
     padding: .3rem;
@@ -248,6 +254,10 @@ tbody td {
     border-radius: unset;
 }
 
-.on:hover, .off:hover {
+.local-storage-clr {
+    background-color: var(--bin);
+}
+
+.on:hover, .off:hover, .clr:hover {
     cursor: pointer;
 }
