@@ -57,6 +57,8 @@ nav {
 nav h1 {
     background-color: var(--primary-nav);
     font-size: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 nav p {
@@ -67,6 +69,11 @@ nav p {
 nav p:hover {
     cursor: pointer;
     color: var(--current-nav);
+}
+
+nav h1 img {
+    width: 1.7rem;
+    background-color: var(--primary-nav);
 }
 
 section {
