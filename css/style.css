@@ -107,7 +107,11 @@ form label {
 form input {
     border: .01rem solid var(--accent);
     height: 2rem;
+    padding: 0 .5rem;
+}
 
+form input:focus {
+    outline: none;
 }
 
 form select {
@@ -118,6 +122,11 @@ form select {
 form textarea {
     border: .01rem solid var(--accent);
     height: 6rem;
+    padding: 0 .2rem;
+}
+
+form textarea:focus {
+    outline: none;
 }
 
 .pref-radio-cont {
