@@ -202,3 +202,52 @@ tbody td {
 .table-actions svg {
     width: 1.3rem;
 }
+
+
+.slsc {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;  
+}
+
+.slsc > p {
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 550;
+}
+
+.sls {
+    width: 4rem;
+    display: flex;
+}s
+
+.session-storage {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+}
+
+.on {
+    color: white;
+    background-color: var(--bin);
+    padding: .3rem;
+    border-radius: .3rem 0 0 .3rem;
+    margin: 0;
+}
+
+.off {
+    color: white;
+    background-color: var(--btn);
+    padding: .3rem;
+    border-radius: 0 .3rem .3rem 0;
+    margin: 0;
+}
+
+.local-storage-off {
+    border-radius: unset;
+}
+
+.on:hover, .off:hover {
+    cursor: pointer;
+}

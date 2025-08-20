@@ -1,6 +1,11 @@
+let sessionStorageState = JSON.parse(sessionStorage.getItem("sessionStorageState")) || false;
+
 document.addEventListener("DOMContentLoaded", () => 
 {
     const html = document.documentElement;
+
+    let sessionLabel = document.querySelector(".session-storage-title");
+    sessionLabel.innerHTML = (sessionStorageState ? "Sess: ON" : "Sess: OFF");
 
     document.querySelector(".to-raise-ticket").addEventListener("click", () => 
     {
@@ -18,6 +23,27 @@ document.addEventListener("DOMContentLoaded", () =>
     {
         storeTicket();
     });
+
+    document.querySelector(".session-storage-on").addEventListener("click", () => 
+    {
+        sessionStorageState = true;
+        localStorageState = false;
+        sessionStorage.setItem("sessionStorageState", JSON.stringify(true));
+
+        let sessionLabel = document.querySelector(".session-storage-title");
+        sessionLabel.innerHTML = "Sess: ON";
+    });
+
+    document.querySelector(".session-storage-off").addEventListener("click", () => 
+    {
+        sessionStorageState = false;
+        sessionStorage.setItem("sessionStorageState", JSON.stringify(false));
+
+        let sessionLabel = document.querySelector(".session-storage-title");
+        sessionLabel.innerHTML = "Sess: OFF";
+    });
+
+
 });
 
 let ticketData = [];
@@ -39,6 +65,11 @@ function storeTicket()
 
     ticketData.push(Object.fromEntries(formData.entries()));
 
+    if (sessionStorageState)
+    {
+        sessionStorage.setItem("sessionData", JSON.stringify(ticketData));
+    }
+
 }
 
 let displayedCounter = 0;
@@ -46,6 +77,11 @@ function listTickets()
 {
     const tableBody = document.querySelector(".ticket-list-body");
     let tableHtml = ``;
+
+    if (sessionStorageState)
+    {
+        ticketData = JSON.parse(sessionStorage.getItem("sessionData")) || [];
+    }
 
     for (displayedCounter; displayedCounter < ticketData.length; displayedCounter ++)
     {
