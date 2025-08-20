@@ -112,6 +112,7 @@ function delRow(id)
 {
     ticketData.splice(id, 1);
     sessionStorage.setItem("sessionData", JSON.stringify(ticketData));
+    localStorage.setItem("localData", JSON.stringify(ticketData));
     const tableBody = document.querySelector(".ticket-list-body");
     tableBody.innerHTML = "";
     displayedCounter = 0;
