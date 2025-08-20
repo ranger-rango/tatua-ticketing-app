@@ -1,4 +1,5 @@
 let sessionStorageState = JSON.parse(sessionStorage.getItem("sessionStorageState")) || false;
+let localStorageState = JSON.parse(localStorage.getItem("localStorageState")) || false;
 
 document.addEventListener("DOMContentLoaded", () => 
 {
@@ -6,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () =>
 
     let sessionLabel = document.querySelector(".session-storage-title");
     sessionLabel.innerHTML = (sessionStorageState ? "Sess: ON" : "Sess: OFF");
+
+    let localLabel = document.querySelector(".local-storage-title");
+    localLabel.innerHTML = (localStorageState ? "Local: ON" : "Local: CLR");
 
     document.querySelector(".to-raise-ticket").addEventListener("click", () => 
     {
@@ -43,6 +47,33 @@ document.addEventListener("DOMContentLoaded", () =>
         sessionLabel.innerHTML = "Sess: OFF";
     });
 
+    document.querySelector(".local-storage-on").addEventListener("click", () => 
+    {
+        localStorageState = true;
+        sessionStorageState = false;
+        localStorage.setItem("localStorageState", JSON.stringify(true));
+
+        let localLabel = document.querySelector(".local-storage-title");
+        localLabel.innerHTML = "Local: ON";
+    });
+
+    document.querySelector(".local-storage-off").addEventListener("click", () => 
+    {
+        localStorageState = false;
+        localStorage.setItem("localStorageState", JSON.stringify(false));
+
+        let localLabel = document.querySelector(".local-storage-title");
+        localLabel.innerHTML = "Local: OFF";
+    });
+
+    document.querySelector(".local-storage-clr").addEventListener("click", () => 
+    {
+        localStorageState = false;
+        localStorage.clear();
+
+        let localLabel = document.querySelector(".local-storage-title");
+        localLabel.innerHTML = "Local: CLR";
+    });
 
 });
 
@@ -70,6 +101,10 @@ function storeTicket()
         sessionStorage.setItem("sessionData", JSON.stringify(ticketData));
     }
 
+    if (localStorageState)
+    {
+        localStorage.setItem("localData", JSON.stringify(ticketData));
+    }
 }
 
 let displayedCounter = 0;
@@ -82,6 +117,12 @@ function listTickets()
     {
         ticketData = JSON.parse(sessionStorage.getItem("sessionData")) || [];
     }
+
+    if (localStorageState)
+    {
+        ticketData = JSON.parse(localStorage.getItem("localData")) || [];
+    }
+
 
     for (displayedCounter; displayedCounter < ticketData.length; displayedCounter ++)
     {
