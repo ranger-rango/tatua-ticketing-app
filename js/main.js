@@ -5,6 +5,10 @@ let currentPage = localStorage.getItem("current_page") || "current-page";
 document.addEventListener("DOMContentLoaded", () => 
 {
     const html = document.documentElement;
+    if (currentPage == "ticket-list")
+    {
+        listTickets();
+    }
     html.setAttribute("current-page", currentPage);
 
     let sessionLabel = document.querySelector(".session-storage-title");
