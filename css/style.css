@@ -108,6 +108,7 @@ form input {
     border: .01rem solid var(--accent);
     height: 2rem;
     padding: 0 .5rem;
+    background-color: white;
 }
 
 form input:focus {
@@ -123,6 +124,7 @@ form textarea {
     border: .01rem solid var(--accent);
     height: 6rem;
     padding: 0 .2rem;
+    background-color: white;
 }
 
 form textarea:focus {
