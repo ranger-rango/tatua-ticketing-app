@@ -215,7 +215,7 @@ tbody td {
 .table-actions {
     display: flex;
     padding: .7rem 0;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .table-actions svg {

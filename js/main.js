@@ -159,7 +159,7 @@ function listTickets()
 
             <td>
                 <p class="main-info">${ticketData[displayedCounter].subject}</p>
-                <p class="extra-info">${ticketData[displayedCounter].message}</p>
+                <p class="extra-info">${ticketData[displayedCounter].message.slice(0, 30) + " ..."}</p>
             </td>
 
             <td>${ticketData[displayedCounter].created_at}</td>
