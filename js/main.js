@@ -281,8 +281,16 @@ function genDataTime()
 }
 
 let ticketData = [];
-function storeTicket()
+async function storeTicket()
 {
+    // if (opp === "edit")
+    // {
+    //     const form = document.getElementById("edit-ticket-form");
+    // }
+    // else
+    // {
+    //     const form = document.getElementById("raise-ticket-form");
+    // }
     const form = document.getElementById("raise-ticket-form");
     const formData = new FormData(form);
 
@@ -290,6 +298,38 @@ function storeTicket()
 
     formData.append("created_at", submitTime);
     formData.append("ticket_id", genID());
+    let formFiles = formData.getAll("file_attachment");
+
+    let files = await Promise.all(
+        formFiles.map(file => 
+        {
+            return new Promise((resolve, reject) => 
+            {
+                const reader = new FileReader();
+                reader.onload = () => 
+                {
+                    resolve(
+                        {
+                            name: file.name,
+                            type: file.type,
+                            size: file.size,
+                            data: reader.result
+                        }
+                    );
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        })
+    );
+
+    formData.set("file_attachment", JSON.stringify(files));
+
+    // formData.delete("file_attachment");
+    // files.forEach(file => 
+    // {
+    //     formData.append("file_attachment", file)
+    // });
 
     ticketData.push(Object.fromEntries(formData.entries()));
 
@@ -479,6 +519,9 @@ function listTickets()
             let dialog = document.querySelector(".modal");
             let modalContent = document.querySelector(".modal-content");
 
+            let file_attachments = JSON.parse(row.file_attachment);
+
+
             let editForm = 
             `
                 <p class="edit-form-title">Edit your ticket</p>
@@ -530,6 +573,7 @@ function listTickets()
                         <input type="file" name="file_attachment" id="file_attachment">
                         <small>
                             Selected files:
+                            ${file_attachments.map(file => file.name)}
                         </small>
                     </div>
 
@@ -539,7 +583,7 @@ function listTickets()
                     </div>
 
                     <button id="edit-btn" type="button">
-                        Edit
+                        Edit 
                     </button>
 
                 </form>
@@ -579,6 +623,80 @@ function listTickets()
                 dialog.close();
 
             });
+        });
+    });
+
+    document.querySelectorAll(".dwn-file").forEach(btn => 
+    {
+        btn.addEventListener("click", (event) => 
+        {
+            let id = event.currentTarget.id.slice(8);
+            const row = ticketData.find(ticket => ticket.ticket_id === id);
+            const files = JSON.parse(row.file_attachment);
+            const dialog =  document.querySelector(".modal");
+            const dialogContent = document.querySelector(".modal-content");
+            dialogContent.innerHTML = "";
+
+            files.forEach(file => 
+            {
+                let el;
+
+                if (file.type.startsWith("image/"))
+                {
+                    el = document.createElement("img");
+                    el.src = file.data;
+                    el.style.maxWidth = "300px";
+                } 
+                else if (file.type === "application/pdf")
+                {
+                    el = document.createElement("embed");
+                    el.src = file.data;
+                    el.type = "application/pdf";
+                    el.width = "600";
+                    el.height = "400";
+                }
+
+                dialogContent.appendChild(el);
+            });
+
+            dialogContent.innerHTML += 
+            `
+            <button class="dwn-file-btn" type="button">
+                Download File(s)
+            </button>
+            `;
+
+            dialog.showModal();
+
+            document.querySelector(".dwn-file-btn").addEventListener("click", () => 
+            {
+                files.forEach(file => 
+                {
+                    const a = document.createElement("a");
+                    a.href = file.data;
+                    a.download = file.name;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                });
+
+                dialogContent.innerHTML = 
+                `
+                <p class="dwn-file-not">File(s) Downloaded</p>
+                `;
+
+                setTimeout(() => 
+                {
+                    dialog.close();
+                }, 2000);
+
+            });
+
+            document.querySelector(".close-modal").addEventListener("click", () => 
+            {
+                dialog.close();
+            });
+            
         });
     });
 
