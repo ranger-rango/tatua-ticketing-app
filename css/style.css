@@ -325,6 +325,9 @@ dialog[open] {
     background-color: white;
     padding: .3rem;
     font-size: .8rem;
+    display:  flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .modal-content-container {
@@ -340,6 +343,7 @@ dialog[open] {
 #edit-ticket-form {
     background-color: white;
     padding: 1rem;
+    grid-template-columns: 10rem 20rem;
 }
 
 #edit-ticket-form > div {
@@ -379,4 +383,8 @@ small {
 
 .del-conf-btn {
     margin: 1rem auto;
+}
+
+.dwn-file-btn {
+    width: 10rem;
 }
