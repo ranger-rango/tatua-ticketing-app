@@ -371,3 +371,12 @@ small {
     color: green;
     background-color: white;
 }
+
+.del-conf {
+    background-color: white;
+    color: var(--bin);
+}
+
+.del-conf-btn {
+    margin: 1rem auto;
+}

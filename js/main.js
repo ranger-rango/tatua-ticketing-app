@@ -379,7 +379,30 @@ function listTickets()
     {
         btn.addEventListener("click", (event) => 
         {
-            delRow(event.target.id.slice(7));
+            let id = event.target.id.slice(7);
+            const dialog = document.querySelector(".modal");
+            const dialogContent = document.querySelector(".modal-content");
+            dialogContent.innerHTML = 
+            `
+            <p class="del-conf">Are you sure you want to delete record ${id} ?</p>
+            <button type="button" class="del-conf-btn">
+                Yes
+            </button>
+            `;
+
+            dialog.showModal();
+
+            document.querySelector(".del-conf-btn").addEventListener("click", () => 
+            {
+                delRow(id);
+                dialog.close();
+            });
+
+            document.querySelector(".close-modal").addEventListener("click", () => 
+            {
+                dialog.close();
+            });
+
         });
     });
 
