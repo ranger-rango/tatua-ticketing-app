@@ -96,8 +96,9 @@ form {
 
 form > div {
     display: grid;
-    grid-template-columns: 10rem 20rem;
+    grid-template-columns: 10rem 20rem 13rem;
     align-items: center;
+    gap:1rem;
 }
 
 form label {
@@ -282,4 +283,82 @@ tbody td {
 
 .on:hover, .off:hover, .clr:hover {
     cursor: pointer;
+}
+
+dialog[open] {
+    inset: unset;
+    margin: unset;
+    position: fixed;
+    top: 12vh;
+    left: 35%;
+    width: fit-content;
+    height: fit-content;
+    max-width: 50rem;
+    padding: 0;
+    border: .1rem solid var(--accent);
+    background-color: var(--primary-nav);
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.modal svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    padding: 0;
+    position: relative;
+    top: .1rem;
+    left: .1rem;
+    background-color: var(--primary-nav);
+}
+
+.modal svg:hover {
+    cursor: pointer;
+}
+
+.modal-content {
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    padding: .3rem;
+    font-size: .8rem;
+}
+
+.modal-content-container {
+    background-color: white;
+}
+
+.edit-form-title {
+    background-color: white;
+    color: var(--accent);
+    margin: 0;
+}
+
+#edit-ticket-form {
+    background-color: white;
+    padding: 1rem;
+}
+
+#edit-ticket-form > div {
+    background-color: white;
+}
+
+#edit-ticket-form label {
+    background-color: white;
+}
+
+.pref-radio-cont {
+    background-color: white;
+}
+
+small {
+    background-color: white;
+}
+
+#edit-btn:hover {
+    cursor: pointer;
+}
+
+.input-err-msg {
+    color: var(--bin);
+    display: none;
 }
