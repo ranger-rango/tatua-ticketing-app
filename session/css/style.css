@@ -1,0 +1,364 @@
+:root {
+    --primary-nav: #2f243a;
+    --yellow: #fccf65;
+    --current-nav: #d38571;
+    --btn: #65558f;
+    --background: #f7f7f7;
+    --thead-color: #643d8c;
+    --refresh: #5e5cd7;
+    --accent: #9e9898;
+    --bin: #ff3b30;
+}
+
+* {
+    background-color: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+[current-page="raise-ticket"] {
+    .ticket-list-section {
+        display: none;
+    }
+}
+
+[current-page="ticket-list"] {
+    .raise-ticket-section {
+        display: none;
+    }
+}
+
+
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+    background-color: var(--primary-nav);
+    padding: 0 1rem;
+    color: white;
+    align-items: center;
+    height: 4.5vh;
+    width: 100vw;
+}
+
+nav h1 {
+    background-color: var(--primary-nav);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+nav p {
+    background-color: var(--primary-nav);
+    font-size: .8rem;
+}
+
+nav p:hover {
+    cursor: pointer;
+    color: var(--current-nav);
+}
+
+nav h1 img {
+    width: 1.7rem;
+    background-color: var(--primary-nav);
+}
+
+section {
+    width: 100vw;
+    height: auto;
+    padding: 1rem 2.5rem;
+}
+
+.form-title {
+    color: var(--accent);
+    font-size: .8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: .8rem;
+}
+
+form > div {
+    display: grid;
+    grid-template-columns: 10rem 20rem 13rem;
+    align-items: center;
+    gap:1rem;
+}
+
+form label {
+    font-weight: 550;
+}
+
+form input {
+    border: .01rem solid var(--accent);
+    height: 2rem;
+    padding: 0 .5rem;
+    background-color: white;
+}
+
+form input:focus {
+    outline: none;
+}
+
+form select {
+    border: .01rem solid var(--accent);
+    height: 2rem;
+    background-color: white;
+}
+
+form textarea {
+    border: .01rem solid var(--accent);
+    height: 6rem;
+    padding: 0 .2rem;
+    background-color: white;
+}
+
+form textarea:focus {
+    outline: none;
+}
+
+.pref-radio-cont {
+    display: flex;
+    justify-content: flex-start;
+    gap: .3rem;
+}
+
+input[type="file"] {
+    padding: .3rem;
+}
+
+.terms-container {
+    grid: unset;
+    display: flex;
+    gap: .5rem;
+}
+
+.terms-container a {
+    color: var(--btn);
+}
+
+button {
+    width: 6rem;
+    height: 2rem;
+    border: none;
+    background-color: var(--btn);
+    color: white;
+    border-radius: 1rem;
+}
+
+.table-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: var(--refresh);
+    font-size: .8rem;
+    font-weight: 550;
+    gap: .5rem;
+}
+
+.table-header svg {
+    width: .8rem;
+}
+
+.table-header:hover {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    border-bottom: .1rem solid var(--thead-color);
+    text-align: start;
+    color: var(--thead-color);
+    font-size: .8rem;
+}
+
+tbody tr {
+    border-bottom: .1rem solid var(--accent);
+}
+
+tbody td {
+    font-size: .8rem;
+    text-align: start;
+    padding: .3rem 0;
+    background-color: unset;
+}
+
+.main-info {
+    font-weight: 550;
+    margin: 0;
+}
+
+.extra-info {
+    color: var(--accent);
+    margin: 0;
+}
+
+.table-actions {
+    display: flex;
+    padding: .7rem 0;
+    justify-content: space-between;
+}
+
+.table-actions svg {
+    width: 1.3rem;
+}
+
+.table-actions svg:hover {
+    cursor: pointer;
+}
+
+.slsc {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;  
+}
+
+.slsc > p {
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 550;
+}
+
+.sls {
+    width: 4rem;
+    display: flex;
+}
+
+.session-storage {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+}
+
+.local-storage {
+    position: fixed;
+    bottom: 1rem;
+    right: 10.5rem;
+}
+
+.on {
+    color: white;
+    background-color: var(--bin);
+    padding: .3rem;
+    border-radius: .3rem 0 0 .3rem;
+    margin: 0;
+}
+
+.off, .clr {
+    color: white;
+    background-color: var(--btn);
+    padding: .3rem;
+    border-radius: 0 .3rem .3rem 0;
+    margin: 0;
+}
+
+.local-storage-off {
+    border-radius: unset;
+}
+
+.local-storage-clr {
+    background-color: var(--bin);
+}
+
+.on:hover, .off:hover, .clr:hover {
+    cursor: pointer;
+}
+
+dialog[open] {
+    inset: unset;
+    margin: unset;
+    position: fixed;
+    top: 12vh;
+    left: 35%;
+    width: fit-content;
+    height: fit-content;
+    max-width: 50rem;
+    padding: 0;
+    border: .1rem solid var(--accent);
+    background-color: var(--primary-nav);
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.modal svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    padding: 0;
+    position: relative;
+    top: .1rem;
+    left: .1rem;
+    background-color: var(--primary-nav);
+}
+
+.modal svg:hover {
+    cursor: pointer;
+}
+
+.modal-content {
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    padding: .3rem;
+    font-size: .8rem;
+}
+
+.modal-content-container {
+    background-color: white;
+}
+
+.edit-form-title {
+    background-color: white;
+    color: var(--accent);
+    margin: 0;
+}
+
+#edit-ticket-form {
+    background-color: white;
+    padding: 1rem;
+}
+
+#edit-ticket-form > div {
+    background-color: white;
+}
+
+#edit-ticket-form label {
+    background-color: white;
+}
+
+.pref-radio-cont {
+    background-color: white;
+}
+
+small {
+    background-color: white;
+}
+
+#edit-btn:hover {
+    cursor: pointer;
+}
+
+.input-err-msg {
+    color: var(--bin);
+    display: none;
+}
