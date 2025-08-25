@@ -25,53 +25,62 @@
                     <form id="raise-ticket-form" enctype="multipart/form-data">
                         <div>
                             <label for="full_name">Full Name:</label>
-                            <input type="text" name="full_name" id="full_name" />
+                            <input type="text" name="full_name" id="full_name" required />
+                            <p class="input-err-msg">Full Name Required !!!</p>
                         </div>
 
                         <div>
                             <label for="email_address">Email Address:</label>
-                            <input type="email" name="email_address" id="email_address" />
+                            <input type="email" name="email_address" id="email_address" required />
+                            <p class="input-err-msg">Email Address Required !!!</p>
                         </div>
 
                         <div>
                             <label for="phone_number">Phone Number:</label>
-                            <input type="tel" name="phone_number" id="phone_number" />
+                            <input type="tel" name="phone_number" id="phone_number" required />
+                            <p class="input-err-msg">Phone Number Required !!!</p>
                         </div>
 
                         <div>
                             <label for="subject">Subject:</label>
-                            <select name="subject" id="subject">
+                            <select name="subject" id="subject" required>
+                                <option value=""></option>
                                 <option value="Mobile App is slow">Mobile App is slow</option>
                                 <option value="Mobile App is not opening">Mobile App is not opening</option>
                                 <option value="Mobile App is crashing">Mobile App is crashing</option>
                                 <option value="Mobile App is showing invalid data">Mobile App is showing invalid data</option>
                             </select>
+                            <p class="input-err-msg">Subject Required !!!</p>
                         </div>
 
                         <div>
                             <label for="message">Message:</label>
-                            <textarea name="message" id="message"></textarea>
+                            <textarea name="message" id="message" required></textarea>
+                            <p class="input-err-msg">Message Required !!!</p>
                         </div>
 
                         <div>
                             <label>Preferred Contact</label>
                             <div class="pref-radio-cont">
-                                <input type="radio" name="contact_method" id="contact_method_email" value="email" />
+                                <input type="radio" class="contact_method_cls" name="contact_method" id="contact_method_email" value="email" required />
                                 <p>Email</p>
 
-                                <input type="radio" name="contact_method" id="contact_method_phone" value="phone" />
+                                <input type="radio" class="contact_method_cls" name="contact_method" id="contact_method_phone" value="phone" required />
                                 <p>Phone</p>
                             </div>
+                            <p class="input-err-msg">Preferred Contact Required !!!</p>
                         </div>
 
                         <div class="attachment-container">
                             <label for="file_attachment">Attachment</label>
-                            <input type="file" name="file_attachment" id="file_attachment">
+                            <input type="file" name="file_attachment" id="file_attachment" accept=".pdf, .jpeg, .jpg, .png" multiple required />
+                            <p class="input-err-msg">At least one attachment required !!!</p>
                         </div>
 
                         <div class="terms-container">
-                            <input type="checkbox" name="terms_conditions" id="terms_conditions" />
+                            <input type="checkbox" name="terms_conditions" id="terms_conditions" required />
                             <label for="terms_conditions">I agree to the <a href="">Terms and Conditions</a> </label>
+                            <p class="input-err-msg">You must agree to the terms and conditions !!!</p>
                         </div>
 
                         <button id="submit-btn" type="button">
@@ -146,6 +155,12 @@
                         <p class="clr local-storage-clr">CLR</p>
                     </div>
                 </div>
+
+
+                <dialog class="modal">
+                    <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#ff4433" d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/></svg>
+                    <div class="modal-content"></div>
+                </dialog>
 
             </main>
         </div>
