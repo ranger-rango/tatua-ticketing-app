@@ -40,7 +40,18 @@ document.addEventListener("DOMContentLoaded", () =>
     document.getElementById("submit-btn").addEventListener("click", () => 
     {
         storeTicket();
+        const dialog = document.querySelector(".modal");
+        const modalContent = document.querySelector(".modal-content");
+        modalContent.innerHTML = 
+        `
+        <p class="successful-ticket-submission">Thank you for your feedback. Your concerns will be addressed as soon as possible.</p>
+        `;
+        dialog.showModal();
         document.getElementById("raise-ticket-form").reset();
+        setTimeout(() => 
+        {
+            dialog.close();
+        }, 3500);
     });
 
     document.querySelector(".session-storage-on").addEventListener("click", () => 

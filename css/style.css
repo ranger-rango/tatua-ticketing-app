@@ -162,6 +162,10 @@ button {
     border-radius: 1rem;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .table-header {
     width: 100%;
     display: flex;
@@ -361,4 +365,9 @@ small {
 .input-err-msg {
     color: var(--bin);
     display: none;
+}
+
+.successful-ticket-submission {
+    color: green;
+    background-color: white;
 }
