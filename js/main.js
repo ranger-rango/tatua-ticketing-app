@@ -1,3 +1,16 @@
+const secretKey = "mysecret123";
+
+function enc(data)
+{
+    return CryptoJS.AES.encrypt(data, secretKey).toString();
+}
+
+function dec(data)
+{
+    const bytes = CryptoJS.AES.decrypt(data, secretKey);
+    return bytes.toString(CryptoJS.enc.Utf8);
+}
+
 let sessionStorageState = JSON.parse(sessionStorage.getItem("sessionStorageState")) || false;
 let localStorageState = JSON.parse(localStorage.getItem("localStorageState")) || false;
 let currentPage = localStorage.getItem("current_page") || "current-page";
@@ -340,14 +353,21 @@ async function storeTicket()
 
     if (localStorageState)
     {
-        localStorage.setItem("localData", JSON.stringify(ticketData));
+        let encTicketData = enc(JSON.stringify(ticketData));
+        localStorage.setItem("localData", encTicketData);
+        // localStorage.setItem("localData", JSON.stringify(encTicketData));
     }
 }
 
 let displayedCounter = 0;
-function delRow(tick_id)
+async function delRow(tick_id)
 {
     // ticketData.splice(id, 1);
+    if (localStorageState)
+    {
+        let encTicketData = localStorage.getItem("localData");
+        ticketData = encTicketData ? JSON.parse(dec(encTicketData)) : [];
+    }
     ticketData = ticketData.filter(ticket => ticket.ticket_id !== tick_id);
 
     if (sessionStorageState)
@@ -357,7 +377,8 @@ function delRow(tick_id)
 
     if (localStorageState)
     {
-        localStorage.setItem("localData", JSON.stringify(ticketData));
+        let encTicketData = enc(JSON.stringify(ticketData));
+        localStorage.setItem("localData", encTicketData);
     }
     const tableBody = document.querySelector(".ticket-list-body");
     tableBody.innerHTML = "";
@@ -365,7 +386,7 @@ function delRow(tick_id)
     listTickets();
 }
 
-function listTickets()
+async function listTickets()
 {
     const tableBody = document.querySelector(".ticket-list-body");
     let tableHtml = ``;
@@ -377,13 +398,14 @@ function listTickets()
 
     if (localStorageState)
     {
-        ticketData = JSON.parse(localStorage.getItem("localData")) || [];
+        let encTicketData = localStorage.getItem("localData");
+
+        ticketData = encTicketData ? JSON.parse(dec(encTicketData)) : [];
     }
 
 
     for (displayedCounter; displayedCounter < ticketData.length; displayedCounter ++)
     {
-        // console.log(ticketData[displayedCounter]);
         tableHtml += 
         `
         <tr id="row${ticketData[displayedCounter].ticket_id}">
@@ -612,7 +634,8 @@ function listTickets()
 
                 if (localStorageState)
                 {
-                    localStorage.setItem("localData", JSON.stringify(ticketData));
+                    let encTicketData = enc(JSON.stringify(ticketData));
+                    localStorage.setItem("localData", encTicketData);
                 }
                 listTickets();
                 dialog.close();
