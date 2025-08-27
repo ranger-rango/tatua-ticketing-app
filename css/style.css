@@ -96,7 +96,7 @@ form {
 
 form > div {
     display: grid;
-    grid-template-columns: 10rem 20rem 13rem;
+    grid-template-columns: 10rem 20rem;
     align-items: center;
     gap:1rem;
 }
@@ -146,7 +146,9 @@ input[type="file"] {
 .terms-container {
     grid: unset;
     display: flex;
+    flex-wrap: wrap;
     gap: .5rem;
+    width: 30rem;
 }
 
 .terms-container a {
@@ -173,7 +175,7 @@ button:hover {
     color: var(--refresh);
     font-size: .8rem;
     font-weight: 550;
-    gap: .5rem;
+    gap: 1rem;
 }
 
 .table-header svg {
@@ -182,6 +184,12 @@ button:hover {
 
 .table-header:hover {
     cursor: pointer;
+}
+
+.table-header > div {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 table {
@@ -294,10 +302,10 @@ dialog[open] {
     margin: unset;
     position: fixed;
     top: 12vh;
-    left: 35%;
+    left: 20%;
     width: fit-content;
     height: fit-content;
-    max-width: 50rem;
+    min-width: 50rem;
     padding: 0;
     border: .1rem solid var(--accent);
     background-color: var(--primary-nav);
@@ -319,15 +327,86 @@ dialog[open] {
     cursor: pointer;
 }
 
+.modal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-nav);
+    padding: 0 .5rem;
+    color: var(--current-nav);
+}
+
+.modal-header {
+    background-color: var(--primary-nav);
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.modal-header > span {
+    background-color: var(--primary-nav);
+}
+
+.modal-header > svg {
+    background-color: var(--primary-nav);
+}
+
 .modal-content {
     width: 100%;
     height: fit-content;
     background-color: white;
-    padding: .3rem;
+    padding: 1rem;
     font-size: .8rem;
     display:  flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.sf-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .7rem;
+    width: 100%;
+    background-color: white;
+}
+
+.sf-btn-container > button {
+    font-weight: 550;
+    font-size: .8rem;
+    border: none;
+}
+
+.sf-reset {
+    background-color: transparent;
+    color: var(--current-nav);
+}
+
+.sf-submit {
+    border-radius: .2rem;
+}
+
+.add-sf {
+    color: var(--refresh);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 550;
+    width: 7rem;
+    padding: .3rem;
+}
+
+.add-sf:hover {
+    cursor: pointer;
+}
+
+.add-sf > span {
+    background-color: white;
+}
+
+.add-sf > svg {
+    background-color: white;
 }
 
 .modal-content-container {
@@ -343,7 +422,7 @@ dialog[open] {
 #edit-ticket-form {
     background-color: white;
     padding: 1rem;
-    grid-template-columns: 10rem 20rem;
+    /* grid-template-columns: 10rem 20rem; */
 }
 
 #edit-ticket-form > div {
@@ -368,7 +447,21 @@ small {
 
 .input-err-msg {
     color: var(--bin);
+    font-weight: 550;
+    grid-column: span 2;
+    padding: .5rem;
     display: none;
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-err-msg > svg {
+    width: 1.5rem;
+    position: relative;
+    bottom: 3.2rem;
+    right: .5rem;
+    background-color: transparent;
 }
 
 .successful-ticket-submission {
@@ -387,4 +480,38 @@ small {
 
 .dwn-file-btn {
     width: 10rem;
+}
+
+.sort-rows, .filter-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-entries {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.filter-entry {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    align-items: center;  
+}
+
+.filter-entry > input {
+    width: 10rem;
+}
+
+.filter-entry > select {
+    width: 10rem;
+}
+
+.filter-entry > label {
+    width: 10rem;
+
 }
