@@ -162,6 +162,15 @@ document.addEventListener("DOMContentLoaded", () =>
         const dialogContent = document.querySelector(".modal-content");
         dialogContent.appendChild(clone);
         dialog.showModal();
+
+        document.addEventListener("click", (e) => 
+        {
+            if (e.target && e.target.id === "sortFilterBtn")
+            {
+                dialog.close();
+            }
+        });
+
         document.querySelector(".close-modal").addEventListener("click", () => 
         {
             dialog.close();

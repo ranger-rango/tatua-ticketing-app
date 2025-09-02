@@ -114,23 +114,50 @@ let currPage = 0;
 let pageSize = 5;
 let currentFilter = [];
 let currentSort = [];
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("nextBtn").addEventListener("click", () => {
-        currPage++;
-        main(pageSize, currPage, currentFilter, currentSort);
-        document.getElementById("pageInfo").innerText = `Page ${currPage + 1} of ${Math.ceil(20 / pageSize)}`;
+document.addEventListener("DOMContentLoaded", () => 
+{
+    document.getElementById("nextBtn").addEventListener("click", () => 
+    {
+        if (currPage < Math.ceil(20 / pageSize) - 1)
+        {
+            currPage++;
+            main(pageSize, currPage, currentFilter, currentSort);
+            document.getElementById("pageInfo").innerText = `Page ${currPage + 1} of ${Math.ceil(20 / pageSize)}`;
+        }
+        if (currPage === Math.ceil(20 / pageSize) - 1)
+        {
+            document.getElementById("nextBtn").style.backgroundColor = '#9e9898';
+        }
+        else
+        {
+            document.getElementById("prevBtn").style.backgroundColor = '#65558f';
+            document.getElementById("nextBtn").style.backgroundColor = '#65558f';
+        }
     });
 
-    document.getElementById("prevBtn").addEventListener("click", () => {
+    document.getElementById("prevBtn").addEventListener("click", () => 
+    {
         if (currPage > 0) {
             currPage--;
             main(pageSize, currPage, currentFilter, currentSort);
             document.getElementById("pageInfo").innerText = `Page ${currPage + 1} of ${Math.ceil(20 / pageSize)}`;
         }
+        if (currPage === 0)
+        {
+            document.getElementById("prevBtn").style.backgroundColor = '#9e9898';
+        }
+        else
+        {
+            document.getElementById("prevBtn").style.backgroundColor = '#65558f';
+            document.getElementById("nextBtn").style.backgroundColor = '#65558f';
+
+        }
     });
 
-    document.addEventListener("submit", (e) => {
-        if (e.target && e.target.id === "filterSortForm") {
+    document.addEventListener("submit", (e) => 
+    {
+        if (e.target && e.target.id === "filterSortForm")
+        {
             e.preventDefault();
 
             const form = e.target;
@@ -143,11 +170,21 @@ document.addEventListener("DOMContentLoaded", () => {
             currentSort = sortField ? [sortField, sortDir] : [];
 
             currPage = 0;
+            if (currPage === 0)
+            {
+                document.getElementById("prevBtn").style.backgroundColor = '#9e9898';
+            }
+
             main(pageSize, currPage, currentFilter, currentSort);
             document.getElementById("pageInfo").innerText = `Page ${currPage + 1} of ${Math.ceil(20 / pageSize)}`;
         }
     });
+
     
+    if (currPage === 0)
+    {
+        document.getElementById("prevBtn").style.backgroundColor = '#9e9898';
+    }
 
     main(pageSize, currPage, currentFilter, currentSort);
     document.getElementById("pageInfo").innerText = `Page ${currPage + 1} of ${Math.ceil(20 / pageSize)}`;
