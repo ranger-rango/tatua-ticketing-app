@@ -60,17 +60,27 @@ function sortFilterBuilder(choice)
     document.querySelector(".sf-reset").innerHTML = choice === "sort" ? "Reset Sorting" : "Reset Filter";
     document.querySelector(".sf-submit").innerHTML = "Submit";
 
-    document.querySelector(".sf-submit").addEventListener("click", () => {
-        let result =  choice === "sort" ? applySorts() : applyFilters();
-        // console.log(result);
-        const tableBody = document.querySelector(".ticket-list-body");
-        tableBody.innerHTML = "";
-        displayedCounter = 0;
-        listTickets(result);
-        dialog.close();
+    document.querySelector(".sf-submit").addEventListener("click", () => 
+    {
+        if (currentPage === "table-render")
+        {
+            let result =  choice === "sort" ? applySorts(jsRenderTable) : applyFilters(jsRenderTable);
+            renderTable(dynamicTableCols, result);
+        }
+        else
+        {
+            let result =  choice === "sort" ? applySorts() : applyFilters();
+            const tableBody = document.querySelector(".ticket-list-body");
+            tableBody.innerHTML = "";
+            displayedCounter = 0;
+            listTickets(result);
+            dialog.close();
+        }
+
     });
 
-    document.querySelector(".sf-reset").addEventListener("click", () => {
+    document.querySelector(".sf-reset").addEventListener("click", () => 
+    {
         document.querySelector(".filter-rows").innerHTML = "";
         document.querySelector(".sort-rows").innerHTML = "";
     });

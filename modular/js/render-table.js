@@ -56,6 +56,8 @@ function fetchData(url)
 }
 
 let totalCount = 0;
+let jsRenderTable;
+let dynamicTableCols;
 async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
 {
     const skip = currentPage * pageSize;
@@ -65,7 +67,7 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
     
     const data = await fetchData(siteUrl);
     console.log(data);
-    const tableCols = [
+    dynamicTableCols = [
         {
             "id" : 'user_name',
             "columnName" : "UserName",
@@ -107,7 +109,8 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
         }
     ];
 
-    renderTable(tableCols, data.value);
+    jsRenderTable = data.value;
+    renderTable(dynamicTableCols, jsRenderTable);
 }
 
 let currPage = 0;

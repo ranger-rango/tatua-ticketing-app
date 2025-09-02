@@ -11,6 +11,11 @@ function filterForm()
                 <option value="phone_number">Phone</option>
                 <option value="created_at">Created At</option>
                 <option value="ticket_id">Ticket ID</option>
+
+                <option value=""></option>
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+                <option value="UserName">User Name</option>
             </select>
         </div>
         <div class="filter-entry">
@@ -30,22 +35,30 @@ function filterForm()
     `;
 }
 
-function applyFilters()
+function applyFilters(arrData)
 {
-    if (sessionStorageState)
-    {
-        ticketData = JSON.parse(sessionStorage.getItem("sessionData")) || [];
-    }
-
-    if (localStorageState)
-    {
-        let encTicketData = localStorage.getItem("localData");
-
-        ticketData = encTicketData ? JSON.parse(dec(encTicketData)) : [];
-    }
-
+    let filtered;
     const rows = document.querySelectorAll(".filter-rows .filter-entries");
-    let filtered = [...ticketData];
+    if (arrData)
+    {
+        filtered = [...arrData];
+    }
+    else
+    {
+        if (sessionStorageState)
+        {
+            ticketData = JSON.parse(sessionStorage.getItem("sessionData")) || [];
+        }
+
+        if (localStorageState)
+        {
+            let encTicketData = localStorage.getItem("localData");
+
+            ticketData = encTicketData ? JSON.parse(dec(encTicketData)) : [];
+        }
+
+        filtered = [...ticketData];
+    }
 
     let filtersForUrl = [];
 

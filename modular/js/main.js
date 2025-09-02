@@ -143,14 +143,18 @@ document.addEventListener("DOMContentLoaded", () =>
         localLabel.innerHTML = "Local: CLR";
     });
 
-    document.querySelector(".sort-btn").addEventListener("click", () => 
+    document.querySelectorAll(".sort-btn").forEach(btn => 
     {
-        sortFilterBuilder("sort");
+        btn.addEventListener("click", () => {
+            sortFilterBuilder("sort");
+        });
     });
 
-    document.querySelector(".filter-btn").addEventListener("click", () => 
+    document.querySelectorAll(".filter-btn").forEach(btn => 
     {
-        sortFilterBuilder("");
+        btn.addEventListener("click", () => {
+            sortFilterBuilder("");
+        });
     });
 
     document.querySelector(".sort-filter-btn").addEventListener("click", () => 

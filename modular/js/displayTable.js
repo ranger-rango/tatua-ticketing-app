@@ -125,7 +125,7 @@ async function listTickets(filteredData)
     }
     // });
 
-    tableBody.innerHTML += tableHtml;
+    // tableBody.innerHTML += tableHtml;
 
     document.querySelectorAll(".del-btns").forEach(btn => 
     {
