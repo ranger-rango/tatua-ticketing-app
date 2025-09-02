@@ -1,0 +1,41 @@
+.filterSortForm {
+    display: none;
+    background-color: white;
+}
+
+.filterSortForm label {
+    background-color: white;
+}
+
+.filterSortForm select {
+    min-width: 7rem;
+    background-color: white;
+}
+
+.filterSortForm input {
+    min-width: 15rem;
+}
+
+.filtr-container {
+    background-color: white;
+    display: flex;
+}
+
+.srt-container {
+    background-color: white;
+    display: flex;
+}
+
+.paginationBtns {
+    margin-top: 2rem;
+    padding: .3rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+}
+
+#pageInfo {
+    font-size: .8rem;
+    font-weight: 550;
+    color: var(--refresh);
+}
