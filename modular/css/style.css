@@ -33,15 +33,29 @@ body {
     .ticket-list-section {
         display: none;
     }
+
+    .js-render-section {
+        display: none;
+    }
 }
 
 [current-page="ticket-list"] {
     .raise-ticket-section {
         display: none;
     }
+    .js-render-section {
+        display: none;
+    }
 }
 
-
+[current-page="table-render"] {
+    .raise-ticket-section {
+        display: none;
+    }
+    .ticket-list-section {
+        display: none;
+    }
+}
 
 nav {
     display: flex;

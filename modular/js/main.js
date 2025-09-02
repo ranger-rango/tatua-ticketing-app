@@ -68,6 +68,13 @@ document.addEventListener("DOMContentLoaded", () =>
         html.setAttribute("current-page", currentPage);
     });
 
+    document.querySelector(".to-table-render").addEventListener("click", () => 
+    {
+        currentPage = "table-render";
+        localStorage.setItem("current_page", "table-render");
+        html.setAttribute("current-page", currentPage);
+    });
+
     formValidation();
 
     document.getElementById("submit-btn").addEventListener("click", () => 
@@ -144,6 +151,22 @@ document.addEventListener("DOMContentLoaded", () =>
     document.querySelector(".filter-btn").addEventListener("click", () => 
     {
         sortFilterBuilder("");
+    });
+
+    document.querySelector(".sort-filter-btn").addEventListener("click", () => 
+    {
+        const form = document.querySelector(".filterSortForm");
+        const clone = form.cloneNode(true);
+        clone.style.display = 'flex';
+        const dialog = document.querySelector(".modal");
+        const dialogContent = document.querySelector(".modal-content");
+        dialogContent.appendChild(clone);
+        dialog.showModal();
+        document.querySelector(".close-modal").addEventListener("click", () => 
+        {
+            dialog.close();
+        });
+
     });
 
     document.querySelector(".refresh-btn").addEventListener("click", () => 
