@@ -111,7 +111,7 @@ async function main(pageSize = 5, currentPage = 0, filter = [], sort = [])
 }
 
 let currPage = 0;
-let pageSize = 10;
+let pageSize = 5;
 let currentFilter = [];
 let currentSort = [];
 document.addEventListener("DOMContentLoaded", () => {
