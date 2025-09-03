@@ -90,6 +90,7 @@ function sortFilterBuilder(choice)
     document.querySelector(".close-modal").addEventListener("click", () => 
     {
         dialogHeader.innerHTML = "";
+        dialogContent.innerHTML = "";
         dialog.close();
     });
 }
